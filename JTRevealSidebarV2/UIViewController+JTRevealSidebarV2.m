@@ -108,7 +108,7 @@ static char *revealedStateKey;
     self.view.layer.shadowColor = [UIColor blackColor].CGColor;
     self.view.layer.shadowOffset = CGSizeMake(-10, 1);
     self.view.layer.shadowOpacity = 0.5;
-    self.view.layer.shadowRadius = 10.0;
+    self.view.layer.shadowRadius = 5.0;
 }
 
 - (void)revealLeftSidebar:(BOOL)showLeftSidebar {
