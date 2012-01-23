@@ -141,6 +141,7 @@ static char *revealedStateKey;
         [view addSubview:button];
         [button addTarget:self action:@selector(closeLeftSidebar) forControlEvents:UIControlEventTouchDown];
     }
+    [view bringSubviewToFront:button];
     button.enabled = YES;
     
     UIView *revealedView = [delegate viewForLeftSidebar];
