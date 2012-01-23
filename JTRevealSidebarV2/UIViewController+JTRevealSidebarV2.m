@@ -17,6 +17,8 @@
 - (void)revealLeftSidebar:(BOOL)showLeftSidebar;
 - (void)revealRightSidebar:(BOOL)showRightSidebar;
 
+- (void)closeLeftSidebar;
+
 @end
 
 @implementation UIViewController (JTRevealSidebarV2)
@@ -111,6 +113,15 @@ static char *revealedStateKey;
     self.view.layer.shadowRadius = 5.0;
 }
 
+- (void)closeLeftSidebar {
+    id <JTRevealSidebarV2Delegate> delegate = [self selectedViewController].navigationItem.revealSidebarDelegate;
+    
+    if ( [delegate respondsToSelector:@selector(toggleLeftSidebar:)]) {
+        [delegate toggleLeftSidebar:nil];
+    }
+
+    [self revealLeftSidebar:NO];
+}
 - (void)revealLeftSidebar:(BOOL)showLeftSidebar {
 
     id <JTRevealSidebarV2Delegate> delegate = [self selectedViewController].navigationItem.revealSidebarDelegate;
@@ -119,6 +130,19 @@ static char *revealedStateKey;
         return;
     }
 
+    const int REVEAL_BUTTON_TAG  = 42355;
+    
+    UIView * view = delegate.view;
+    
+    UIButton * button = (UIButton *) [view viewWithTag:REVEAL_BUTTON_TAG]; 
+    if (button == nil) {
+        button = [[UIButton alloc] initWithFrame:view.frame];
+        button.tag = REVEAL_BUTTON_TAG;
+        [view addSubview:button];
+        [button addTarget:self action:@selector(closeLeftSidebar) forControlEvents:UIControlEventTouchDown];
+    }
+    button.enabled = YES;
+    
     UIView *revealedView = [delegate viewForLeftSidebar];
     revealedView.tag = SIDEBAR_VIEW_TAG;
     CGFloat width = CGRectGetWidth(revealedView.frame);
@@ -132,6 +156,7 @@ static char *revealedStateKey;
         self.view.frame = CGRectOffset(self.view.frame, width, 0);
         [self showShadow];
     } else {
+        button.enabled = NO;
         [UIView beginAnimations:@"hideSidebarView" context:(void *)SIDEBAR_VIEW_TAG];
 //        self.view.transform = CGAffineTransformTranslate([self baseTransform], -width, 0);
         
@@ -140,7 +165,7 @@ static char *revealedStateKey;
 
         [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
         [UIView setAnimationDelegate:self];
-    }
+    } 
     
     NSLog(@"%@", NSStringFromCGAffineTransform(self.view.transform));
 

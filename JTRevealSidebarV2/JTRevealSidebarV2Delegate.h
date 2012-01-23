@@ -7,11 +7,14 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @protocol JTRevealSidebarV2Delegate <NSObject>
 
 @optional
 - (UIView *)viewForLeftSidebar;
 - (UIView *)viewForRightSidebar;
+- (UIView *)view;
+- (void)toggleLeftSidebar:(id)sender;
 
 @end
