@@ -152,6 +152,10 @@ static char *revealedStateKey;
         [self.view.superview insertSubview:revealedView belowSubview:self.view];
         
         [UIView beginAnimations:@"" context:nil];
+        [UIView setAnimationDuration:0.32];
+//        [UIView setAnimationCurve:UIViewAnimationOptionCurveEaseOut];
+        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+        
 //        self.view.transform = CGAffineTransformTranslate([self baseTransform], width, 0);
         
         self.view.frame = CGRectOffset(self.view.frame, width, 0);
