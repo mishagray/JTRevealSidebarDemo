@@ -119,8 +119,8 @@ static char *revealedStateKey;
     if ( [delegate respondsToSelector:@selector(toggleLeftSidebar:)]) {
         [delegate toggleLeftSidebar:nil];
     }
-
-    [self revealLeftSidebar:NO];
+    else
+        [self revealLeftSidebar:NO];
 }
 - (void)revealLeftSidebar:(BOOL)showLeftSidebar {
 
@@ -152,7 +152,7 @@ static char *revealedStateKey;
         [self.view.superview insertSubview:revealedView belowSubview:self.view];
         
         [UIView beginAnimations:@"" context:nil];
-        [UIView setAnimationDuration:0.32];
+        [UIView setAnimationDuration:0.25];
 //        [UIView setAnimationCurve:UIViewAnimationOptionCurveEaseOut];
         [UIView setAnimationCurve:UIViewAnimationCurveLinear];
         
