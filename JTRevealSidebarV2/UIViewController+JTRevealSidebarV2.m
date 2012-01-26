@@ -160,6 +160,9 @@ static char *revealedStateKey;
         
         self.view.frame = CGRectOffset(self.view.frame, width, 0);
         [self showShadow];
+        if ([delegate respondsToSelector:@selector(leftSideBarOpened:)]) {
+            [delegate performSelector:@selector(leftSideBarOpened:) withObject:self];;
+        }
     } else {
         button.enabled = NO;
         [UIView beginAnimations:@"hideSidebarView" context:(void *)SIDEBAR_VIEW_TAG];
@@ -170,6 +173,9 @@ static char *revealedStateKey;
 
         [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
         [UIView setAnimationDelegate:self];
+        if ([delegate respondsToSelector:@selector(leftSideBarClosed:)]) {
+            [delegate performSelector:@selector(leftSideBarClosed:) withObject:self];;
+        }
     } 
     
     NSLog(@"%@", NSStringFromCGAffineTransform(self.view.transform));
