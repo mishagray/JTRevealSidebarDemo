@@ -153,8 +153,9 @@ static char *revealedStateKey;
         
         [UIView beginAnimations:@"" context:nil];
         [UIView setAnimationDuration:0.25];
+        [UIView setAnimationCurve:UIViewAnimationOptionCurveEaseInOut];
 //        [UIView setAnimationCurve:UIViewAnimationOptionCurveEaseOut];
-        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+//        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
         
 //        self.view.transform = CGAffineTransformTranslate([self baseTransform], width, 0);
         
