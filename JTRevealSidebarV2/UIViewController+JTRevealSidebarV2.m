@@ -136,7 +136,7 @@ static char *revealedStateKey;
     
     UIButton * button = (UIButton *) [view viewWithTag:REVEAL_BUTTON_TAG]; 
     if (button == nil) {
-        button = [[UIButton alloc] initWithFrame:view.frame];
+        button = [[[UIButton alloc] initWithFrame:view.frame] autorelease];
         button.tag = REVEAL_BUTTON_TAG;
         [view addSubview:button];
         [button addTarget:self action:@selector(closeLeftSidebar) forControlEvents:UIControlEventTouchDown];
