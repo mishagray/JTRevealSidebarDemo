@@ -17,7 +17,9 @@
 - (UIView *)view;
 - (void)toggleLeftSidebar:(id)sender;
 
+- (void)leftSideBarWillOpen:(id)sender;
 - (void)leftSideBarOpened:(id)sender;
+- (void)leftSideBarWillClose:(id)sender;
 - (void)leftSideBarClosed:(id)sender;
 
 

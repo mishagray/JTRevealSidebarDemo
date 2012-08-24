@@ -129,6 +129,9 @@ static char *revealedStateKey;
     if ( ! [delegate respondsToSelector:@selector(viewForLeftSidebar)]) {
         return;
     }
+    if ([delegate respondsToSelector:@selector(leftSideBarWillOpen:)]) {
+        [delegate performSelector:@selector(leftSideBarWillOpen:) withObject:self];;
+    }
 
     const int REVEAL_BUTTON_TAG  = 42355;
     
